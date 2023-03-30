@@ -1,136 +1,262 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Play Audio on Button Click</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gateway</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LynithDev/webimate-lib/dist/main.css">
+    <script src="https://cdn.jsdelivr.net/gh/LynithDev/webimate-lib/dist/main.js" defer></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <style>
-        button {
-            padding: 20px 20px;
-            --background: linear-gradient(to right, #FF0000, #FFA500, #FFFF00, #008000, #0000FF, #4B0082, #EE82EE);
-            color: rgb(7, 0, 0);
-            font-size: 40px;
-            border: 4px solid transparent;
-            border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
-            border-image-slice: 1;
-            border-radius: 134px;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            --animation: animatedBackground_a .8s linear infinite alternate;
-        }
-
-        .q iframe {
-            border: 3px solid transparent;
-            border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
-            border-image-slice: 1;
+        :root {
+            --red: #ff0000;
+            --orange: #ff9100;
+            --green: #2bff00;
+            --blue: #00ccff;
+            --purple: #4c00ff;
+            --pink: #ff009d;
         }
 
         body {
-            color: #ffffff;
-            background-image: url("harithzest.png");
-            background-repeat: no-repeat;
-            background-size: cover ;
-            background-position-y: -300px;
+            overflow: hidden;
         }
 
-        @keyframes rainbow {
-            0% {
-                background-position: 0% 50%
+        /*  #daa4e5, #9b6acb, #c285fe */
+
+        @keyframes background-pan {
+            from {
+                background-position: 0% center;
+            }
+
+            to {
+                background-position: -200% center;
+            }
+        }
+
+        @keyframes scale {
+
+            from,
+            to {
+                transform: scale(0);
             }
 
             50% {
-                background-position: 100% 50%
-            }
-
-            100% {
-                background-position: 0% 50%
+                transform: scale(1);
             }
         }
 
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
 
-        .webtitle-rainbow {
-            font-size: 35px;
-            background-image: -webkit-linear-gradient(right, #f00, #ff2b00, #f50, #ff8000, #fa0, #ffd500, #ff0, #d4ff00, #af0, #80ff00, #5f0, #2bff00, #0f0, #00ff2a, #0f5, #00ff80, #0fa, #00ffd5, #0ff, #00d5ff, #0af, #0080ff, #05f, #002aff, #00f, #2b00ff, #50f, #8000ff, #a0f, #d400ff, #f0f, #ff00d4, #f0a, #ff0080, #f05, #ff002b, #f00);
-            -webkit-animation: animatedBackground_a .9s linear infinite alternate;
+            to {
+                transform: rotate(180deg);
+            }
+        }
+
+        body {
+            background-color: rgb(25, 25, 25);
+            display: grid;
+            height: 100vh;
+            margin: 0px;
+            overflow: hidden;
+            place-items: center;
+        }
+
+        h1 {
+            color: white;
+            font-family: "Rubik", sans-serif;
+            font-size: clamp(7em, 2vw, 10em);
+            font-weight: 400;
+            margin: 0px;
+            padding: 20px;
+            text-align: center;
+            user-select: none;
+        }
+
+        h1>.magic {
+            display: inline-block;
+            position: relative;
+        }
+
+        h1>.magic>.magic-star {
+            --size: clamp(30px, 1.5vw, 40px);
+
+            animation: scale 700ms ease forwards;
+            display: block;
+            height: var(--size);
+            left: var(--star-left);
+            position: absolute;
+            top: var(--star-top);
+            width: var(--size);
+        }
+
+        h1>.magic>.magic-star>svg {
+            animation: rotate 1000ms linear infinite;
+            display: block;
+            opacity: 0.7;
+        }
+
+        h1>.magic>.magic-star>svg>path {
+            fill: var(--purple);
+        }
+
+        h1>.magic2>.magic-star2 {
+            --size: clamp(10px, 1.5vw, 15px);
+
+            animation: scale 700ms ease forwards;
+            display: block;
+            height: var(--size);
+            left: var(--star-left);
+            position: absolute;
+            top: var(--star-top);
+            width: var(--size);
+        }
+
+        h1>.magic2>.magic-star2>svg {
+            animation: rotate 1000ms linear infinite;
+            display: block;
+            opacity: 0.7;
+        }
+
+        h1>.magic2>.magic-star2>svg>path {
+            fill: var(--purple);
+        }
+
+        h1>.magic>.magic-text {
+            animation: background-pan 5s linear infinite;
+            background: linear-gradient(to right,
+                    var(--red),
+                    var(--orange),
+                    var(--green),
+                    var(--blue),
+                    var(--purple),
+                    var(--pink),
+                    var(--red));
+            background-size: 200%;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: #0000;
             background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
         }
 
-        @keyframes animatedBackground_a {
-            0% {
-                background-position: 0 0
-            }
-
-            100% {
-                background-position: -200px 0
-            }
+        h1>.magic2>.magic-text {
+            animation: background-pan 2s linear infinite;
+            background: linear-gradient(to right,
+                    var(--blue),
+                    var(--purple),
+                    var(--pink),
+                    var(--blue));
+            background-size: 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
         }
-		
-		.logo {
-			width: 300px;
-			height: 130px;
-			position: fixed;
-            border: 4px solid transparent;
-            border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
-            border-image-slice: 1;
-			top: 70%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			animation: bounce 4s infinite;
-		}
-		
-		@keyframes bounce {
-			0% {
-				transform: translate(-50%, -50%) rotate(0deg);
-			}
-			25% {
-				transform: translate(-50%, -50%) rotate(90deg);
-			}
-			50% {
-				transform: translate(-50%, -50%) rotate(180deg);
-			}
-			75% {
-				transform: translate(-50%, -50%) rotate(270deg);
-			}
-			100% {
-				transform: translate(-50%, -50%) rotate(360deg);
-			}
-		}
+        
+        h1.sub {
+            margin-top: -38px;
+            font-size: clamp(1.7em, 2vw, 2em);
+        }
 
+        h1.sub2 {
+            margin-top: -37px;
+            font-size: clamp(1.2em, 2vw, 2em);
+        }
 
-/* snow */
-.snowflake {
-    color: #fff;
-    font-size: 0.7em;
-    opacity: 30%;
-    font-family: Arial;
-    text-shadow: 0 0 1px #000;
-  }
-  
-  @-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+        h1.sub3 {
+            margin-top: -37px;
+            font-size: clamp(1em, 2vw, 2em);
+        }
     </style>
 </head>
 
 <body>
-    <div class="snowflakes" aria-hidden="true"><div class="snowflake">■</div><div class="snowflake">◆</div><div class="snowflake">■</div><div class="snowflake">◆</div><div class="snowflake">■</div><div class="snowflake">◆</div><div class="snowflake">■</div><div class="snowflake">◆</div><div class="snowflake">■</div><div class="snowflake">◆</div></div>
-    <marquee behavior="scroll" direction="left" scrollamount="25">
-        <h1><span class="webtitle-rainbow"><span style="font-family: 'Arial'">HARITH CAUGHT LACKING</h1>
-    </marquee>
-    <audio id="audio" src="HARITHLACKING.mp3"></audio>
-    <button onclick="playAudio()">Play Audio</button>
-    <img class="logo" src="harithzest2.png" alt="DVD logo">
-    <footer class="p-3 mb-2 qb-self"> Certified 3K, Anabolic Steroid  </footer>
-    <video width="700" height="340"  controls autoplay>
-        <source src="harithcome.mp4" type=video/mp4>
-      </video>
+    <div>
+    <h1 class="animate fade top queue=1">
+        
+        <span class="magic">
+            <span class="magic-star">
+                <svg viewBox="0 0 512 512">
+                    <path
+                        d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+                </svg>
+            </span>
+            <span class="magic-star">
+                <svg viewBox="0 0 512 512">
+                    <path
+                        d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+                </svg>
+            </span>
+            <span class="magic-star">
+                <svg viewBox="0 0 512 512">
+                    <path
+                        d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+                </svg>
+            </span>
+            <span class="magic-text">Gateway</span>
+        </span>
+    </h1>
+    <h1 class="sub animate fade left queue=2">
+        <span style="letter-spacing: -1.9px">click me</span>
+        <span class="magic2">
+            <a href="/harith.html" class="magic-text">here</a></span>
+        <h1 class="sub2 animate fade right queue=2">
+            Harith Fanpage ^^
+        </h1>
+    </h1>
     
+    </div>
+
+    <script src="https://codepen.io/Hyperplexed/pen/xxYJYjM/54407644e24173ad6019b766443bf2a6.js"></script>
     <script>
-        function playAudio() {
-            var audio = document.getElementById("audio");
-            audio.play();
-            audio.volume = 10.0;
+        let index = 0,
+            interval = 1000;
+
+        const rand = (min, max) =>
+            Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const animate = star => {
+            star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
+            star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
+
+            star.style.animation = "none";
+            star.offsetHeight;
+            star.style.animation = "";
+        }
+
+        let timeouts = [],
+            intervals = [];
+
+        const magic = document.querySelector(".magic");
+
+        magic.onmouseenter = () => {
+            let index = 1;
+
+            for (const star of document.getElementsByClassName("magic-star")) {
+                timeouts.push(setTimeout(() => {
+                    animate(star);
+
+                    intervals.push(setInterval(() => animate(star), 1000));
+                }, index++ * 300));
+            };
+        }
+
+        magic.onmouseleave = onMouseLeave = () => {
+            for (const t of timeouts) clearTimeout(t);
+            for (const i of intervals) clearInterval(i);
+
+            timeouts = [];
+            intervals = [];
         }
     </script>
+
 </body>
+
 </html>
